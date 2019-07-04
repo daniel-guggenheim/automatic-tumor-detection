@@ -1,4 +1,4 @@
-# Projet: Tumor classification
+# Automatic Tumor Detection
 This project describes from start to finish a machine learning project that was done during my work at the Lausanne University Hospital (Unisanté) to classify cancer-related lab reports. The company gracefully accepted that I published it here.
 
 **Table of Contents:**
