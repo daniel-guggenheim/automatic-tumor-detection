@@ -21,16 +21,11 @@ def classify_folder_of_pdfs_with_svm(data_folder: str, model_filename: str):
     :return: a dataframe with one row per pdf in the given folder, each row containing the path, the predicted
         label (0 or 1 for positive or negative), the filename, the folder, the text and the cleaned text.
     """
-    print('Loading model')
     svm_model = load_pickle(model_filename)
-    print('Converting all pdfs in folder into text')
     df = tumor_pdf_folder_to_df(data_folder)
-    print('Preprocessing all texts')
     text_preprocessing = TextPreprocessing()
     df = text_preprocessing.transform_df(df)
-    print('Classifying all text with the svm model.')
     df['y_pred'] = svm_model.predict(df.clean_text.values)
-    print('Finished. Returning dataframe of results')
     return df
 
 
@@ -45,14 +40,9 @@ def classify_folder_of_pdfs_with_keywords(data_folder: str,
     :return: a dataframe with one row per pdf in the given folder, each row containing the path, the predicted
         label (0 or 1 for positive or negative), the filename, the folder, the text and the cleaned text.
     """
-    print('Loading model')
     kw_model = KeywordModel(keyword_filename)
-    print('Converting all pdfs in folder into text')
     df = tumor_pdf_folder_to_df(data_folder)
-    print('Preprocessing all texts')
     text_preprocessing = KeywordPreprocessing()
     df = text_preprocessing.transform_df(df)
-    print('Classifying all text with the svm model.')
     df['y_pred'] = kw_model.predict(df.kw_clean_text.values)
-    print('Finished. Returning dataframe of results')
     return df

@@ -44,9 +44,9 @@ def tumor_pdf_folder_to_df(data_folder: str, incremental_save_file=None, pdf_pas
         return f[-4:] == '.pdf' and f[0] != '.'
 
     nb_files = sum([len([f for f in files if is_pdf_file(f)]) for r, d, files in os.walk(data_folder)])
-    print("Converting {} pdf files to text.".format(nb_files))
     file_count = 0
 
+    # Go through each pdf in all subfolders, and extract the text
     for i, (path, subfolders, files) in list(enumerate(os.walk(data_folder))):
         for pdf_filename in files:
             if is_pdf_file(pdf_filename):
@@ -66,7 +66,6 @@ def tumor_pdf_folder_to_df(data_folder: str, incremental_save_file=None, pdf_pas
 
     if incremental_save_file is not None:
         save_pickle(df_list, incremental_save_file)
-    print('Finished.')
     return pd.DataFrame(df_list)
 
 
@@ -78,12 +77,9 @@ def pdf_folder_to_clean_df(data_folder: str) -> pd.DataFrame:
     :param data_folder: The folder which contains the pdfs.
     :return: Dataframe with 1 pdf per line, with as column: [text, clean_text, path, filename, folder]
     """
-    print('Converting all pdfs in folder into text')
     df = tumor_pdf_folder_to_df(data_folder)
-    print('Preprocessing all texts')
     text_preprocessing = TextPreprocessing()
     df = text_preprocessing.transform_df(df)
-    print('Finished building dataframe')
     return df
 
 
@@ -116,11 +112,9 @@ def add_labo_to_df(df: pd.DataFrame, labs_pattern: Optional[List[Tuple[str, str]
     def find_labo(row):
         found_labo = find_labo_from_pdf_text(row.text, labs_pattern)
         if len(found_labo) == 0:
-            # print(f"No labo found at index {row.name}.")
             return None
         if len(found_labo) > 1:
             print(f"Found too many labo at index {row.name}: {found_labo}.")
-            # return found_labo
         return found_labo[0]
 
     df = df.copy()

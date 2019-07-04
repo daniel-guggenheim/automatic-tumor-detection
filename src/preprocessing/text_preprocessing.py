@@ -36,9 +36,7 @@ class TextPreprocessing(TransformerMixin, BaseEstimator):
         :return:
         """
         clean_texts = []
-        for i, txt in enumerate(texts):
-            if i % 200 == 0:
-                print(f'{now_time()}  : {i}/{len(texts)} docs processed.')
+        for txt in texts:
             clean_texts.append(self.__normalize_text(txt))
         return clean_texts
 
