@@ -40,7 +40,7 @@ The best model was SVM with the following parameters:
 Furthermore, the SVM decision hyperplane was manually “moved” in a perpendicular direction which allowed to make some trade-offs between the recall and the specificity. In the end, moving the hyperplane of -0.724 allowed to improve the recall so that it reaches the project’s objectives while lowering the specificity to a level that remained acceptable. You can observe the trade-offs between the sensitivity (recall) and specificity on the figure below.
 
 ![Sensitivity vs specificity trade-off and hyperplan decision](images/recall_vs_specificity.png)
-*Sensitivity vs specificity trade-off and hyperplan decision*
+*By moving the hyperplane, the sensitivity and specificity scores are changed. The red line is the optimal decision hyperplane for a 99% sensitivity.*
 
 ### Previous classification system: keyword-based model
 Before this project, the Tumor Vaud Registry team used a keyword-based classification algorithm. They had manually examined many documents and had come up with a list of 155 keywords usually found in positive documents. Then, they devised a simple classification algorithm which, given a document, tried to find any of the 155 keywords in it. If any keyword was found, the document was classified as positive, and if none were found, the document was classified as negative. Though simple, this algorithm yielded good results, and had proven to be robust. The proposed model will be compared with this algorithm called here the “keyword model”.
@@ -101,7 +101,11 @@ The file `environment.yml` contains the conda environment that needs to be insta
 
 ## Code overview
 `src/models/` contains the SVM and keyword model definition.
-`src/preprocessing` contains the code to preprocess the different datasets.
+
+`src/preprocessing` contains the code to preprocess the different datasets. `standard_preprocessing.py` contains the functions to apply the preprocessing to usual pdfs. The secondary dataset (dataset2), coming from a different source has to be treated a bit differently and the code for its preprocessing can be found in the file `preprocessing_dataset2.py`. `text_preprocessing.py` contains fonctions specifically to clean and normalize text which are used during the standard preprocessing step.
+
+Note that scikit-learn pipelines are used to chain preprocessing and training steps together.
+
 `src/utils` contains some utility functions.
 
 The jupyter notebook `train_svm_classifier.ipynb` can be used to train the SVM classifier.
