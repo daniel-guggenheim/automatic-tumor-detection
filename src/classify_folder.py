@@ -6,7 +6,7 @@
 Methods to classify entire folders of PDF with the machine learning methods.
 """
 from src.models.keyword_model import KeywordPreprocessing, KeywordModel
-from src.preprocessing.data_preprocessing import tumor_pdf_folder_to_df
+from src.preprocessing.standard_preprocessing import tumor_pdf_folder_to_df
 from src.preprocessing.text_preprocessing import TextPreprocessing
 from src.utils.utilities import load_pickle
 

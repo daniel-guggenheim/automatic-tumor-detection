@@ -10,8 +10,6 @@ import pandas
 from nltk.corpus import stopwords
 from sklearn.base import TransformerMixin, BaseEstimator
 
-from src.utils.utilities import now_time
-
 
 class TextPreprocessing(TransformerMixin, BaseEstimator):
     """
