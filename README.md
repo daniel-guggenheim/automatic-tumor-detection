@@ -23,7 +23,7 @@ Part of a positive text (in French). You can recognize some tumor positive relat
 ### Datasets
 The data consists in PDF documents coming from multiple laboratories (usually situated in the French speaking part of Switzerland). A dataset of 25.000 positive and 16.000 negative documents was manually labeled in order to use supervised learning. The dataset was split so that 85% of these documents were used as a training set and the remaining 15% as a primary test set. Another small dataset from previous work was used as a secondary test set.
 
-### Metrics
+### Metrics: Recall
 In this task, note that a false-positive document is not as “bad” as a false-negative one, as all the documents classified as positive are manually reviewed later (a mistake costs time), which is not the case for the negative ones (a mistake loses the document forever). Therefore, two metrics are used. The main one to optimize is recall (also called sensitivity) because it is not acceptable for the registry to lose too many positive tumor reports. The secondary metric that to optimize is specificity because it remains important to make as few mistakes as possible when classifying a document as positive.
 
 ### Preprocessing and model selection
@@ -52,7 +52,7 @@ The result of the model on both test sets were as follow:
   <tr>
     <th></th>
     <th colspan="2">Keyword Model</th>
-    <th colspan="2">SVM</th>
+    <th colspan="2">SVM (new model)</th>
   </tr>
   <tr>
     <td></td>
