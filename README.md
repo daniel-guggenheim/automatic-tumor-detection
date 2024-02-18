@@ -1,5 +1,8 @@
-# Automatic Tumor Detection
-This project describes from start to finish a machine learning project that was done during my work at the Lausanne University Hospital (Unisanté) to classify cancer-related lab reports. The company gracefully accepted that I published it here.
+# ML-Driven Lab Report Classification for Cancer Detection at Lausanne University Hospital
+
+This project is an end-to-end machine learning solution developed at Lausanne University Hospital (Unisanté) to automate the classification of approximately 100,000 annual pathology reports. This initiative aimed to automate the classification of these reports, distinguishing between reports of interest (indicative of malignancy) and those that are not (benign or non-tumor). Employing machine learning was crucial due to the unstructured nature of pathology reports, which are free-text documents written by physicians.
+
+With Unisanté's permission, I'm sharing the insights and methodology here.
 
 **Table of Contents:**
 
@@ -10,7 +13,7 @@ This project describes from start to finish a machine learning project that was 
 
 ## Project report
 ### Introduction
-The Vaud Tumor Registry receives about 100K pathology reports every year, but only a fraction of those are interesting to the registry. The “interesting” reports (patient affected with a malign tumor) are processed by a specialist and registered in a database, whereas the negative reports (benign tumor or no tumor) are discarded.
+The Vaud Tumor Registry receives about 100.000 pathology reports every year, but only a fraction of those are interesting to the registry. The “interesting” reports (patient affected with a malign tumor) are processed by a specialist and registered in a database, whereas the negative reports (benign tumor or no tumor) are discarded.
 
 The goal of this project is to use machine learning to do binary classification on the pathology documents to automatically detect if a report is positive (“interesting”) or negative. Machine learning must be used to solve this task because pathology reports consist in a free-text written by a doctor. So, there is no specific text or element, in a specific position in all documents that would always say “no tumor” or “found tumor” (which could have allowed to solve this task without machine learning).
 
